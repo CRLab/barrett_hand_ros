@@ -15,7 +15,7 @@
 	<xacro:property name="joint_velocity_limit" value="2.0" />
 	<xacro:property name="mechanical_reduction" value="1.0" />
 
-	<xacro:macro name="bhand_macro" params="parent name *origin">
+	<xacro:macro name="bhand_macro" params="parent name *origin use_tactile_sensors:=true">
 		
 		<joint name="${name}_base_joint" type="fixed">
 			<insert_block name="origin"/>
@@ -444,7 +444,9 @@
 
 		<!-- Auto generated tactile sensor links -->
 
-		<xacro:bh_tactile name="bh"/>
+		<xacro:if value="${use_tactile_sensors}">
+			<xacro:bh_tactile name="bh"/>
+		</xacro:if>
 		
 	</xacro:macro>
 	
